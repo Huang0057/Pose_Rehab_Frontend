@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
+import Home from "./pages/Home/Home";
+import GamesPage from "./pages/Games/Games";
+import CheckinPage from "./pages/CheckIn/CheckIn";
+import DifficultyPage from "./pages/Difficulty/Difficulty";
+import LoginPage from "./pages/Login/Login";
+import RecordsPage from "./pages/Records/Records";
+import Footer from "./components/layout/Footer/Footer";
+import Header from "./components/layout/Header/Header";
+import LoginFooter from "./components/layout/LoginFooter/LoginFooter";
 
-function App() {
+const App = () => {
+  const location = useLocation();
+  const isLoginPage =
+    location.pathname === "/login" || location.pathname === "/";
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {!isLoginPage && <Header />}
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/games" element={<GamesPage />} />
+        <Route path="/checkin" element={<CheckinPage />} />
+        <Route path="/difficulty" element={<DifficultyPage />} />
+        <Route path="/records" element={<RecordsPage />} />
+      </Routes>
+      {isLoginPage && <LoginFooter />}
+      {!isLoginPage && <Footer />}
     </div>
   );
-}
-
-export default App;
+};
+const AppWrapper = () => (
+  <Router>
+    <App />
+  </Router>
+);
+export default AppWrapper;
