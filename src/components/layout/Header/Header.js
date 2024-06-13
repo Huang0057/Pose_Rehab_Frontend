@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Header.css";
 
 const Header = () => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
   return (
     <div className="header">
       <div className="left-content">
@@ -14,12 +20,20 @@ const Header = () => {
         </div>
       </div>
       <div className="right-content">
-        <a>
+        <div className="dropdown">
           <img
             src={`${process.env.PUBLIC_URL}/images/user-icon.png`}
             alt="User Image"
+            onClick={toggleDropdown}
+            className="dropdown-toggle"
           />
-        </a>
+          {isDropdownOpen && (
+            <div className="dropdown-menu">
+              <span>歡迎，XXX!</span>
+              <button className="logout-button">登出</button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

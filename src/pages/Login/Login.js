@@ -4,7 +4,7 @@ import "./Login.css";
 const Login = () => {
   return (
     <div className="login-container">
-      <h1>歡迎回來！請登入</h1>
+      <h1 className="login-h1">歡迎回來！請登入</h1>
       <form className="login-form">
         <label>
           帳號：

@@ -21,11 +21,13 @@
 }
 
 .login-button {
+  font-weight: bold;
   background-color: #daf7bf;
   color: #2e5a8d;
 }
 
 .register-button {
+  font-weight: bold;
   background-color: #daf7bf;
   color: #2e5a8d;
 }

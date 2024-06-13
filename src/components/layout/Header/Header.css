@@ -45,21 +45,71 @@
   color: white;
 }
 
-.right-content a {
+.right-content {
+  position: relative;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   border: 2px solid #506e54;
   border-radius: 50%;
   padding: 10px;
-  width: auto;
+  width: 60px;
+  height: 60px;
+}
+
+.dropdown-toggle img {
+  width: 100%;
   height: auto;
 }
 
-.right-content a img {
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #ffffff;
+  border: 1px solid #e7e7e7;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  border-radius: 4px;
+  z-index: 1000;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  width: 60px;
-  height: auto;
+  min-width: 200px;
+  min-height: 250px;
+}
+
+.dropdown-menu span {
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #000000;
+  margin-top: auto; /* 這行將 span 放置在中間 */
+}
+
+.logout-button {
+  background-color: #506e54;
+  color: #ffffff;
+  border: none;
+  padding: 4px 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 32px;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+  margin-top: auto; /* 這行將按鈕置於底部 */
+}
+
+.logout-button:hover {
+  background-color: #405a43;
 }
