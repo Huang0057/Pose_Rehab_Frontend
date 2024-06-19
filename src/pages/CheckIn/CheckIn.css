@@ -3,6 +3,7 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
+  background-color: #eae6e1;
 }
 
 .calendar {

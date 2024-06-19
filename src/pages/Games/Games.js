@@ -11,7 +11,7 @@ const Games = () => {
 
   return (
     <div className="games-container">
-      <div className="game-item" onClick={() => handleButtonClick("upperBody")}>
+      <div className="game-item" onClick={() => handleButtonClick("上肢")}>
         <button className="game-button">
           <img
             src={"/images/upperBody.png"}
@@ -21,7 +21,7 @@ const Games = () => {
         </button>
         <span className="game-text">上肢</span>
       </div>
-      <div className="game-item" onClick={() => handleButtonClick("lowerBody")}>
+      <div className="game-item" onClick={() => handleButtonClick("下肢")}>
         <button className="game-button">
           <img
             src={"/images/lowerBody.png"}
@@ -31,13 +31,13 @@ const Games = () => {
         </button>
         <span className="game-text">下肢</span>
       </div>
-      <div className="game-item" onClick={() => handleButtonClick("fullBody")}>
+      <div className="game-item" onClick={() => handleButtonClick("四肢")}>
         <button className="game-button">
           <img src={"/images/fullBody.png"} alt="四肢" className="game-image" />
         </button>
         <span className="game-text">四肢</span>
       </div>
-      <div className="game-item" onClick={() => handleButtonClick("hand")}>
+      <div className="game-item" onClick={() => handleButtonClick("手部")}>
         <button className="game-button">
           <img src={"/images/hand.png"} alt="手部" className="game-image" />
         </button>

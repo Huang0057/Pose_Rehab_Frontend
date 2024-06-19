@@ -3,6 +3,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
+  background-color: #eae6e1;
 }
 
 .left-content {
@@ -93,7 +94,7 @@
   font-size: 28px;
   font-weight: bold;
   color: #000000;
-  margin-top: auto; /* 這行將 span 放置在中間 */
+  margin-top: auto;
 }
 
 .logout-button {
@@ -107,7 +108,7 @@
   font-weight: bold;
   width: 100%;
   text-align: center;
-  margin-top: auto; /* 這行將按鈕置於底部 */
+  margin-top: auto;
 }
 
 .logout-button:hover {

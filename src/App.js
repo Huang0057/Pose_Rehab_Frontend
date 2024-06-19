@@ -11,6 +11,7 @@ import CheckinPage from "./pages/CheckIn/CheckIn";
 import DifficultyPage from "./pages/Difficulty/Difficulty";
 import LoginPage from "./pages/Login/Login";
 import RecordsPage from "./pages/Records/Records";
+import GameDescriptionPage from "./pages/GameDescription/GameDescription";
 import Footer from "./components/layout/Footer/Footer";
 import Header from "./components/layout/Header/Header";
 import LoginFooter from "./components/layout/LoginFooter/LoginFooter";
@@ -30,6 +31,7 @@ const App = () => {
         <Route path="/checkin" element={<CheckinPage />} />
         <Route path="/difficulty" element={<DifficultyPage />} />
         <Route path="/records" element={<RecordsPage />} />
+        <Route path="/description" element={<GameDescriptionPage />} />
       </Routes>
       {isLoginPage && <LoginFooter />}
       {!isLoginPage && <Footer />}

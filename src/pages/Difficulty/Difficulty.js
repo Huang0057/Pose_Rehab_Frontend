@@ -14,7 +14,9 @@ const Difficulty = () => {
     console.log(
       `Selected Body Part: ${bodyPart}, Selected Difficulty: ${selectedDifficulty}`
     );
-    // 這裡可以添加導航到下一步或其他操作
+    navigate("/description", {
+      state: { bodyPart, selectedDifficulty },
+    });
   };
 
   return (
@@ -22,7 +24,7 @@ const Difficulty = () => {
       <div className="difficulty-container">
         <div
           className="difficulty-item"
-          onClick={() => handleDifficultyClick("easy")}
+          onClick={() => handleDifficultyClick("簡單")}
         >
           <button className="difficulty-button">
             <img
@@ -35,7 +37,7 @@ const Difficulty = () => {
         </div>
         <div
           className="difficulty-item"
-          onClick={() => handleDifficultyClick("medium")}
+          onClick={() => handleDifficultyClick("普通")}
         >
           <button className="difficulty-button">
             <img
@@ -48,7 +50,7 @@ const Difficulty = () => {
         </div>
         <div
           className="difficulty-item"
-          onClick={() => handleDifficultyClick("hard")}
+          onClick={() => handleDifficultyClick("困難")}
         >
           <button className="difficulty-button">
             <img
