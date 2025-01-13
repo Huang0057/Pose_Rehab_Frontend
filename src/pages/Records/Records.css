@@ -1,0 +1,104 @@
+.records-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #eae6e1;
+  height: 50vh;
+}
+
+.records-button-container {
+  display: flex;
+  margin-bottom: 100px;
+  justify-content: center;
+}
+
+.records-button-container button {
+  margin-right: 70px;
+  margin-left: 70px;
+  padding: 10px 40px;
+  font-size: 48px;
+  font-weight: bold;
+  color: #2e5a8d;
+  background-color: #daf7bf;
+  border: 2px solid #2e5a8d;
+  border-radius: 80px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.export-button {
+  font-weight: bold;
+  color: #2e5a8d;
+  background-color: #daf7bf;
+  border: 2px solid #2e5a8d;
+  border-radius: 80px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.records-table-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.records-table {
+  width: auto;
+  height: 150%;
+  border-collapse: collapse;
+  border: 2px solid #506e54;
+}
+
+.records-table th,
+.records-table td {
+  border: 1px solid transparent;
+  padding: 5px;
+  text-align: center;
+}
+
+.records-table th {
+  background-color: #506e54;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 32px;
+  width: 200px;
+}
+.records-table td {
+  font-size: 24px;
+}
+
+.records-table tr {
+  border-bottom: 2px solid #ffffff2d; /* 分隔線 */
+}
+
+.records-table tr:last-child {
+  border-bottom: none;
+}
+
+.records-table tr:nth-child(even) {
+  background-color: #daf7bf; /* 偶數行背景顏色 */
+}
+
+.records-table tr:nth-child(odd) {
+  background-color: #f0f8e7; /* 奇數行背景顏色 */
+}
+.export-button-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 85px;
+  margin-right: 45vh;
+}
+
+.export-button {
+  padding: 10px 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #506e54;
+  border: 2px solid #506e54;
+  border-radius: 80px;
+  cursor: pointer;
+}

@@ -1,0 +1,75 @@
+/* PoseGame 的樣式 */
+
+.pose-game-container {
+  position: relative;
+  width: 640px;
+  height: 480px;
+  border: 2px solid #000; /* 外框顏色與粗細 */
+  background-color: #fff; /* 背景顏色 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 添加陰影效果 */
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+video {
+  display: none; /* 隱藏 video 元素，只用於獲取攝像頭畫面 */
+}
+
+/* 卷軸文字區域的樣式 */
+.description-section {
+  flex: 1;
+  display: flex;
+  width: auto;
+  height: 70vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.description-background {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 30px;
+  width: 800px;
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* 子項目緊貼在一起 */
+  align-items: center;
+  padding-top: 60px; /* 向上移動內容 */
+}
+
+.description-background h2 {
+  color: #2e5a8d;
+  font-size: 38px;
+  font-weight: bold;
+  margin-bottom: 10px; /* 調整與下方項目的間距 */
+}
+
+.description-background p {
+  color: #000000;
+  font-size: 28px;
+  margin: 5px 0; /* 調整段落之間的間距 */
+}
+
+.description-background button {
+  margin-top: 10px; /* 向上移動按鈕 */
+  padding: 10px 40px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #2e5a8d;
+  background-color: #daf7bf;
+  border: 2px solid #2e5a8d;
+  border-radius: 80px;
+  cursor: pointer;
+}
+
+.description-background button:hover {
+  background-color: #c7e8a9;
+}

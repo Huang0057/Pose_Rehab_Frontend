@@ -1,0 +1,55 @@
+.difficulty-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 5%;
+  background-color: #eae6e1;
+}
+
+.difficulty-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.difficulty-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 300px;
+  background-color: #f8e7d2;
+  border: 2px solid #2e5a8d;
+  border-radius: 20%;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  transition: transform 0.3s ease;
+  padding: 0; /* 移除內邊距 */
+}
+
+.difficulty-button:hover {
+  transform: scale(1.05);
+}
+
+.difficulty-image-easy {
+  width: 65%;
+  height: auto;
+}
+.difficulty-image-medium {
+  width: 80%;
+  height: auto;
+}
+
+.difficulty-image-hard {
+  width: 80%;
+  height: auto;
+}
+
+.difficulty-text {
+  color: #506e54;
+  font-weight: bold;
+  font-size: 64px;
+  text-align: center;
+  margin-top: 10px;
+}

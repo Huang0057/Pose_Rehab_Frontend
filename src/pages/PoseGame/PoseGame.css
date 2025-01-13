@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 65vh; /* 佔滿整個視口高度 */
+  width: 100%; /* 佔滿整個視口寬度 */
+}
+
+.pose-game-container {
+  position: relative;
+  width: 960px;
+  height: 640px;
+  
+  background-color: #fff; /* 背景顏色 */
+  
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+video {
+  display: none; /* 隱藏 video 元素，只用於獲取攝像頭畫面 */
+}

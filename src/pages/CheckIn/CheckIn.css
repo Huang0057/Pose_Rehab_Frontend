@@ -1,0 +1,86 @@
+.checkin-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background-color: #eae6e1;
+}
+
+.calendar {
+  width: 40%;
+  border-collapse: collapse;
+  margin-right: 20px;
+  margin-left: 20%;
+}
+
+.calendar th,
+.calendar td {
+  padding: 5px;
+  border: 2px solid #ccc;
+  text-align: center;
+  font-weight: bold;
+}
+
+.calendar th {
+  background-color: #f5f5f5;
+  font-size: 30px;
+}
+
+.calendar td {
+  height: 80px;
+  font-size: 24px;
+  vertical-align: top; /* 文字置於格子內中間最上方 */
+}
+
+.calendar .empty {
+  background-color: #f9f9f9;
+}
+
+.calendar th:nth-child(1),
+.calendar th:nth-child(7) {
+  color: red; /* 六和日為紅色 */
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+}
+
+.select-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-top: 15vh;
+  margin-left: 10px;
+}
+
+.select-container label {
+  margin-left: 30px;
+  font-size: 40px;
+}
+.select-container select {
+  font-size: 30px;
+}
+
+.search-button {
+  padding: 0px 30px;
+  margin-left: 20px;
+  font-weight: bold;
+  font-size: 36px;
+  color: #2e5a8d;
+  background-color: #daf7bf;
+  border: 1px solid #2e5a8d;
+  border-radius: 80px;
+}
+
+.checkin-button {
+  padding: 10px 20px;
+  margin-top: 10%;
+  margin-left: 5vh;
+  font-weight: bold;
+  font-size: 60px;
+  color: #2e5a8d;
+  background-color: #daf7bf;
+  border: 2px solid #2e5a8d;
+  border-radius: 80px;
+}
