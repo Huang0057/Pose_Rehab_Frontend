@@ -6,23 +6,18 @@ const ArmGame = ({ selectedDifficulty }) => {
   const canvasRef = useRef(null);
   const poseRef = useRef(null);
   const cameraRef = useRef(null);
+  const lastValidAngleRef = useRef(0);
+  const previousAngleRef = useRef(0);  // 追蹤前一個角度
   const [raiseCount, setRaiseCount] = useState(0);
-  const [stage, setStage] = useState('none');
+  const [stage, setStage] = useState('down');
+  const [canCount, setCanCount] = useState(true);
   const [currentAngle, setCurrentAngle] = useState(0);
   const [loadingState, setLoadingState] = useState({
     status: 'loading',
     message: '正在初始化...'
   });
 
-  // 難度設定
-  const difficultyAngles = {
-    easy: 20,    // 垂直向下約20度
-    medium: 45,  // 斜下45度
-    hard: 90,    // 水平90度
-  };
-  const targetAngle = difficultyAngles[selectedDifficulty] || 45;
-
-  // 計算手臂與垂直向下的夾角
+  // 計算手臂與垂直線的夾角
   const calculateArmAngle = (shoulder, elbow) => {
     // 計算手臂向量
     const armVector = {
@@ -38,15 +33,12 @@ const ArmGame = ({ selectedDifficulty }) => {
     const armLength = Math.sqrt(armVector.x * armVector.x + armVector.y * armVector.y);
     const downLength = Math.sqrt(downVector.x * downVector.x + downVector.y * downVector.y);
     
-    let angle = Math.acos(dot / (armLength * downLength)) * (180 / Math.PI);
+    // 手臂向下時為 0 度
+    const rad = Math.acos(dot / (armLength * downLength));
+    const deg = rad * (180 / Math.PI);
     
-    // 判斷手臂是在左邊還是右邊，以確保角度的正確性
-    if (armVector.x < 0) {
-      angle = 360 - angle;
-    }
-    
-    // 返回 0-180 範圍的角度
-    return angle > 180 ? 360 - angle : angle;
+    // 根據手臂在身體左側還是右側判斷角度
+    return armVector.x < 0 ? deg : -deg;
   };
 
   const onResults = (results) => {
@@ -61,7 +53,6 @@ const ArmGame = ({ selectedDifficulty }) => {
     canvasCtx.drawImage(results.image, 0, 0, canvasElement.width, canvasElement.height);
 
     if (results.poseLandmarks) {
-      // 繪製姿勢標記
       import("@mediapipe/drawing_utils").then(({ drawConnectors, drawLandmarks }) => {
         import("@mediapipe/pose").then(({ POSE_CONNECTIONS }) => {
           drawConnectors(canvasCtx, results.poseLandmarks, POSE_CONNECTIONS, {
@@ -75,39 +66,51 @@ const ArmGame = ({ selectedDifficulty }) => {
         });
       });
 
-      // 獲取左手臂的關鍵點
       const leftShoulder = results.poseLandmarks[11];
       const leftElbow = results.poseLandmarks[13];
+      const leftWrist = results.poseLandmarks[15];
 
-      // 驗證關鍵點的可見度
       const visibilityThreshold = 0.5;
       if (leftShoulder.visibility > visibilityThreshold && 
-          leftElbow.visibility > visibilityThreshold) {
+          leftElbow.visibility > visibilityThreshold && 
+          leftWrist.visibility > visibilityThreshold) {
         
-        const angle = calculateArmAngle(leftShoulder, leftElbow);
+        const angle = calculateArmAngle(leftShoulder, leftElbow);  // 修正參數順序
         setCurrentAngle(Math.round(angle));
 
-        // 更新手臂狀態和計數邏輯
-        // 舉手動作計數邏輯
-        if (angle < 10) {  // 手臂放下時（接近垂直）
-          setStage('down');
-        }
-        if (angle >= targetAngle && stage === 'down') {  // 達到目標角度且在down階段
-          setStage('up');
-          setRaiseCount(prev => prev + 1);
+        // 取絕對值來判斷側平舉角度
+        const absAngle = Math.abs(angle);
+        
+        // 只有當角度變化足夠大時才更新狀態，避免抖動
+        if (Math.abs(absAngle - lastValidAngleRef.current) > 2) {
+          lastValidAngleRef.current = absAngle;
+          
+          const isRaising = absAngle > previousAngleRef.current;  // 判斷是否正在舉起
+          const isLowering = absAngle < previousAngleRef.current;  // 判斷是否正在放下
+          
+          // 更新前一個角度
+          previousAngleRef.current = absAngle;
+
+          // 當手臂接近自然垂放時（小於 5 度）且確實在放下手臂
+          if (absAngle < 5 && isLowering) {
+            if (stage === 'up') {
+              setStage('down');
+              setCanCount(true);  // 回到垂放狀態時，允許下一次計數
+            }
+          }
+          // 當達到目標角度且正在舉起手臂
+          else if (absAngle >= 20 && isRaising && stage === 'down' && canCount) {
+            setStage('up');
+            setRaiseCount(prev => prev + 1);
+            setCanCount(false);  // 計數後，在回到垂放狀態前不允許再次計數
+          }
         }
 
-        // 除錯信息
         canvasCtx.font = '18px Arial';
         canvasCtx.fillStyle = 'white';
         canvasCtx.fillText(`階段: ${stage}`, 10, 60);
         canvasCtx.fillText(`角度: ${Math.round(angle)}°`, 10, 30);
-        canvasCtx.fillText(`目標角度: ${targetAngle}°`, 10, 90);
-
-        // 繪製當前角度（用於除錯）
-        canvasCtx.font = '24px Arial';
-        canvasCtx.fillStyle = 'white';
-        canvasCtx.fillText(`角度: ${Math.round(angle)}°`, 10, 30);
+        canvasCtx.fillText(`計數: ${raiseCount}`, 10, 90);
       }
     }
     canvasCtx.restore();
@@ -221,7 +224,7 @@ const ArmGame = ({ selectedDifficulty }) => {
         videoRef.current.srcObject.getTracks().forEach(track => track.stop());
       }
     };
-  }, []); // 移除不必要的依賴
+  }, []);
 
   return (
     <div className="container">
@@ -266,8 +269,8 @@ const ArmGame = ({ selectedDifficulty }) => {
             <div className="counter-box">
               <span className="counter-label">舉手次數</span>
               <span className="counter-number">{raiseCount}</span>
-              <span className="counter-target">目標角度: {targetAngle}°</span>
               <span className="current-angle">當前角度: {currentAngle}°</span>
+              <span className="current-stage">當前階段: {stage}</span>
             </div>
           </div>
         )}
