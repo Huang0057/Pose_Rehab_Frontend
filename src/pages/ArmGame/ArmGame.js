@@ -1,12 +1,30 @@
 import React, { useRef, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import "./ArmGame.css";
 
-const ArmGame = ({ selectedDifficulty }) => {
+const ArmGame = () => {
+  const location = useLocation();
+  const selectedDifficulty = location.state?.selectedDifficulty || 'easy';  // 設定預設值為 'easy'
+
+  const getThresholdAngle = (difficulty) => {
+    switch(difficulty) {
+      case 'easy':
+        return 20;
+      case 'medium':
+        return 45;
+      case 'hard':
+        return 70;
+      default:
+        return 20;
+    }
+  };
+
+  const thresholdAngle = getThresholdAngle(selectedDifficulty);
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const poseRef = useRef(null);
   const cameraRef = useRef(null);
-  const previousAngleRef = useRef(0);
+
   const stageRef = useRef('down');
   const [raiseCount, setRaiseCount] = useState(0);
   const [currentAngle, setCurrentAngle] = useState(0);
@@ -71,7 +89,7 @@ const ArmGame = ({ selectedDifficulty }) => {
         const absAngle = Math.abs(angle);
         setCurrentAngle(absAngle);
 
-        if (absAngle >= 20 && stageRef.current === 'down') {
+        if (absAngle >= thresholdAngle && stageRef.current === 'down') {
             stageRef.current = 'up';
             setRaiseCount(prev => prev + 1);
         } else if (absAngle < 10) {
@@ -235,7 +253,7 @@ const ArmGame = ({ selectedDifficulty }) => {
             <div className="counter-box">
             <span className="counter-label">舉手次數</span>
             <span className="counter-number">{raiseCount}</span>
-            <span className="current-angle">角度: {Math.round(currentAngle)}°</span>
+              <span className="current-angle">角度: {Math.round(currentAngle)}°</span>
             </div>
           </div>
         )}
