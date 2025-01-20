@@ -18,6 +18,7 @@ import LoginFooter from "./components/layout/LoginFooter/LoginFooter";
 import PoseGamePage from "./pages/PoseGame/PoseGame";
 import ArmGamePage from "./pages/ArmGame/ArmGame";
 import FootGamePage from "./pages/FootGame/FootGame";
+import EndGamePage from "./pages/EndGame/EndGame";
 
 const App = () => {
   const location = useLocation();
@@ -38,6 +39,7 @@ const App = () => {
         <Route path="/posegame" element={<PoseGamePage />} />
         <Route path="/footgame" element={<FootGamePage />} />
         <Route path="/armgame" element={<ArmGamePage />} />
+        <Route path="/endgame" element={<EndGamePage />} />
       </Routes>
       {isLoginPage && <LoginFooter />}
       {!isLoginPage && <Footer />}
