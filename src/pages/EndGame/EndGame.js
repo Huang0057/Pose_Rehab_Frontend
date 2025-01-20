@@ -20,13 +20,13 @@ const EndGame = () => {
       </h1>
       <div className="endgame-buttons">
         <button 
-          className="game-button"
+          className="continuegame-button"
           onClick={handleContinueGame}
         >
           繼續遊戲
         </button>
         <button 
-          className="game-button"
+          className="record-button"
           onClick={handleViewRecords}
           >
             查看紀錄

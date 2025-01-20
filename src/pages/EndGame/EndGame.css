@@ -25,7 +25,21 @@
     padding: 0 1rem;
 }
 
-.game-button {
+.continuegame-button {
+    padding: 0.25rem 1.5rem;
+    font-size: 2rem;
+    font-weight: 600;
+    border-radius: 1.5rem;
+    border: none;
+    cursor: pointer;
+    background-color: #4A7B63;
+    color: white;
+    min-width: 120px;
+    height: 3rem;
+    line-height: 2.5rem;
+    transition: background-color 0.2s;
+}
+.record-button {
     padding: 0.25rem 1.5rem;
     font-size: 2rem;
     font-weight: 600;
@@ -40,7 +54,5 @@
     transition: background-color 0.2s;
 }
 
-.game-button:hover {
-    background-color: #3d6551;
-}
+
 

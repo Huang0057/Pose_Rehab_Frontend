@@ -1,11 +1,16 @@
 import React, { useRef, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./ArmGame.css";
+import descriptions from "../GameDescription/descriptions";
 
 const ArmGame = () => {
   const location = useLocation();
-  const selectedDifficulty = location.state?.selectedDifficulty || 'easy';  // 設定預設值為 'easy'
+  const navigate = useNavigate();
+  const selectedDifficulty = location.state?.selectedDifficulty || 'easy';
 
+  const getInstructions = () => {
+    return descriptions.upperBody[selectedDifficulty] || [];
+  };
   const getThresholdAngle = (difficulty) => {
     switch(difficulty) {
       case 'easy':
@@ -18,7 +23,13 @@ const ArmGame = () => {
         return 20;
     }
   };
+  const handleBack = () => {
+    navigate(-1);
+  };
 
+  const handleEndGame = () => {
+    navigate('/endgame');
+  };
   const thresholdAngle = getThresholdAngle(selectedDifficulty);
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
@@ -162,8 +173,8 @@ const ArmGame = () => {
                 await poseRef.current.send({ image: videoRef.current });
               }
             },
-            width: 640,
-            height: 480
+            width: 800,
+            height: 600
           });
 
           await camera.start();
@@ -211,7 +222,11 @@ const ArmGame = () => {
   }, []);
 
   return (
-    <div className="container">
+    <div className="armgame-container">
+      <button onClick={handleBack} className="back-button">
+        返回
+      </button>
+      
       <div className="pose-game-container">
         <video
           ref={videoRef}
@@ -219,14 +234,14 @@ const ArmGame = () => {
           muted
           style={{
             display: "none",
-            width: "640px",
-            height: "480px"
+            width: "800px",
+            height: "600px"
           }}
         />
         <canvas
           ref={canvasRef}
-          width="640"
-          height="480"
+          width="800"
+          height="600"
           style={{ border: "1px solid black" }}
         />
         
@@ -249,15 +264,29 @@ const ArmGame = () => {
         )}
         
         {loadingState.status === 'ready' && (
-          <div className="counter-display">
-            <div className="counter-box">
-            <span className="counter-label">舉手次數</span>
-            <span className="counter-number">{raiseCount}</span>
-              <span className="current-angle">角度: {Math.round(currentAngle)}°</span>
+          <>
+            <div className="arm-counter-display">
+              <div className="arm-counter-box">
+                <span className="arm-counter-label">舉手次數</span>
+                <span className="arm-counter-number">{raiseCount}</span>
+                <span className="current-angle">角度: {Math.round(currentAngle)}°</span>
+              </div>
             </div>
-          </div>
+            <div className="arm-instructions">
+              <h3>運動指示：</h3>
+              <ul>
+                {getInstructions().map((instruction, index) => (
+                  <li key={index}>{instruction}</li>
+                ))}
+              </ul>
+            </div>
+          </>
         )}
       </div>
+      
+      <button onClick={handleEndGame} className="end-game-button">
+        結束遊戲
+      </button>
     </div>
   );
 };

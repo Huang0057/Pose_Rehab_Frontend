@@ -283,14 +283,14 @@ const FootGame = () => {
         
         {loadingState.status === 'ready' && (
           <>
-            <div className="counter-display">
-              <div className="counter-box">
-                <span className="counter-label">抬腿次數</span>
-                <span className="counter-number">{raiseCount}</span>
-                <span className="current-angle">角度: {Math.round(currentAngle)}°</span>
+            <div className="foot-counter-display">
+              <div className="foot-counter-box">
+                <span className="foot-counter-label">抬腿次數</span>
+                <span className="foot-counter-number">{raiseCount}</span>
+                <span className="foot-current-angle">角度: {Math.round(currentAngle)}°</span>
               </div>
             </div>
-            <div className="instructions">
+            <div className="foot-instructions">
               <h3>運動指示：</h3>
               <ul>
                 {getInstructions().map((instruction, index) => (
