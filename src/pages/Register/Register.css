@@ -1,0 +1,131 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #eae6e1;
+  }
+  
+  .register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;  /* 改為 100vh 以填滿整個視窗 */
+    background-color: #eae6e1;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .register-h1 {
+    color: #2e5a8d;
+    font-weight: bold;
+    font-size: 70px;
+    letter-spacing: 0.2em;
+    margin-bottom:10px;
+  }
+  
+  .register-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 20px;
+  }
+  
+  .register-label {
+    margin-bottom: 20px;
+    color: #000000;
+    font-size: 36px;
+    font-weight: bold;
+    width: 100%;
+  }
+  
+  .register-input {
+    margin-top: 0%;
+    padding: 10px;
+    border: 0px solid #d0d0d0;
+    border-radius: 10px;
+    font-size: 32px;
+    width: 140vw;
+    height: 3vh;
+    background-color: #f8e7d2;
+  }
+  
+  .input-underline {
+    height: 2px;
+    background-color: #2e5a8d;
+    width: 100%;
+    margin-top: 8px;
+  }
+  
+  .error-message {
+    color: #ff4444;
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-align: center;
+    width: 100%;
+    background-color: rgba(255, 68, 68, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .register-button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 200px;
+    width: 80vw;
+    max-width: 1000px;
+    margin-top: 30px;
+  }
+  
+  .register-return-button {
+    background-color: #daf7bf;
+    color: #2e5a8d;
+    border: 2px solid #2e5a8d;
+    border-radius: 25rem;
+    padding: 5px 10px;
+    font-size: 48px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 50%;
+    transition: background-color 0.3s;
+  }
+  
+  .register-submit-button {
+    background-color: #daf7bf;
+    color: #2e5a8d;
+    border: 2px solid #2e5a8d;
+    border-radius: 25rem;
+    padding: 5px 10px;
+    font-size: 48px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 50%;
+    transition: background-color 0.3s;
+  }
+  
+  .register-return-button:hover,
+  .register-submit-button:hover {
+    opacity: 0.9;
+  }
+  
+  .register-return-button:active,
+  .register-submit-button:active {
+    transform: scale(0.98);
+  }
+  
+  .register-input:focus {
+    outline: none;
+    background-color: #fff3e6;
+  }
+  
+ 
+  .register-form {
+    margin-right: 0;
+  }
+  
+  
+  .register-label, .register-input, .input-underline {
+    width: 40vw;
+    max-width: 1000px;
+  }

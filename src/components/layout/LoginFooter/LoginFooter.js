@@ -10,7 +10,7 @@ const LoginFooter = () => {
   };
 
   const handleRegisterClick = () => {
-    console.log("Navigate to register page");
+    navigate("/register");
   };
 
   return (
@@ -18,7 +18,7 @@ const LoginFooter = () => {
       <button className="login-button" onClick={handleLoginClick}>
         登入
       </button>
-      <button className="register-button" onClick={handleRegisterClick}>
+      <button className="loginfooter-register-button" onClick={handleRegisterClick}>
         註冊
       </button>
     </div>

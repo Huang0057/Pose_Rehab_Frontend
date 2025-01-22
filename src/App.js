@@ -10,6 +10,7 @@ import GamesPage from "./pages/Games/Games";
 import CheckinPage from "./pages/CheckIn/CheckIn";
 import DifficultyPage from "./pages/Difficulty/Difficulty";
 import LoginPage from "./pages/Login/Login";
+import RegisterPage from "./pages/Register/Register";
 import RecordsPage from "./pages/Records/Records";
 import GameDescriptionPage from "./pages/GameDescription/GameDescription";
 import Footer from "./components/layout/Footer/Footer";
@@ -20,13 +21,15 @@ import ArmGamePage from "./pages/ArmGame/ArmGame";
 import FootGamePage from "./pages/FootGame/FootGame";
 import EndGamePage from "./pages/EndGame/EndGame";
 
+
 const App = () => {
   const location = useLocation();
-  const isLoginPage =
-    location.pathname === "/login" || location.pathname === "/";
+  const isLoginPage = location.pathname === "/login" || location.pathname === "/";
+  const isRegisterPage = location.pathname === "/register";
+
   return (
     <div>
-      {!isLoginPage && <Header />}
+      {!isLoginPage && !isRegisterPage && <Header />}
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/login" element={<LoginPage />} />
@@ -40,9 +43,10 @@ const App = () => {
         <Route path="/footgame" element={<FootGamePage />} />
         <Route path="/armgame" element={<ArmGamePage />} />
         <Route path="/endgame" element={<EndGamePage />} />
+        <Route path="/register" element={<RegisterPage />} />
       </Routes>
       {isLoginPage && <LoginFooter />}
-      {!isLoginPage && <Footer />}
+      {!isLoginPage && !isRegisterPage && <Footer />}
     </div>
   );
 };

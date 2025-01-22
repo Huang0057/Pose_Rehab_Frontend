@@ -11,7 +11,7 @@
 }
 
 .login-button,
-.register-button {
+.loginfooter-register-button {
   padding: 0px 80px;
   border: none;
   border-radius: 80px;
@@ -26,13 +26,13 @@
   color: #2e5a8d;
 }
 
-.register-button {
+.loginfooter-register-button {
   font-weight: bold;
   background-color: #daf7bf;
   color: #2e5a8d;
 }
 
 .login-button:hover,
-.register-button:hover {
+.loginfooter-register-button:hover {
   opacity: 0.9;
 }
