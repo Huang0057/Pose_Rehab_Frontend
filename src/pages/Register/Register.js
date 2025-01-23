@@ -51,7 +51,7 @@ const Register = () => {
       await Swal.fire({
         icon: 'success',
         title: '註冊成功！',
-        text: '即將跳轉到登入頁面...',
+        text: '即將回到登入頁面...',
         timer: 1500,  // 1.5秒後自動關閉
         showConfirmButton: false
       });
