@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useAuth } from "../../context/authContext";
+import { useAuth } from "../../context/authContext.js";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Login.css";
@@ -17,7 +17,13 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const response = await axios.post("http://localhost:8000/api/users/login", formData);
-      login(response.data);
+      login({
+        uid: response.data.uid,
+        username: response.data.username,
+        coins: response.data.coins,
+        streakDays: response.data.streak_days,
+        token: response.data.token  // 添加 token
+      });
       navigate("/home");
     } catch (err) {
       setError(err.response?.data?.detail || "登入失敗");
