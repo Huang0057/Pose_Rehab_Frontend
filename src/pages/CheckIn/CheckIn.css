@@ -29,16 +29,33 @@
 .calendar td {
   height: 80px;
   font-size: 24px;
-  vertical-align: top; /* 文字置於格子內中間最上方 */
+  vertical-align: top;
+}
+
+.date-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.checkin-icon {
+  width: 30px;
+  height: 30px;
+  margin-top: 5px;
 }
 
 .calendar .empty {
   background-color: #f9f9f9;
 }
 
+.calendar .today {
+  background-color: #e8f4ff;
+}
+
 .calendar th:nth-child(1),
 .calendar th:nth-child(7) {
-  color: red; /* 六和日為紅色 */
+  color: red;
 }
 
 .controls {
@@ -58,6 +75,7 @@
   margin-left: 30px;
   font-size: 40px;
 }
+
 .select-container select {
   font-size: 30px;
 }
@@ -71,6 +89,11 @@
   background-color: #daf7bf;
   border: 1px solid #2e5a8d;
   border-radius: 80px;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: #c5e7a5;
 }
 
 .checkin-button {
@@ -83,4 +106,33 @@
   background-color: #daf7bf;
   border: 2px solid #2e5a8d;
   border-radius: 80px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.checkin-button:hover:not(:disabled) {
+  background-color: #c5e7a5;
+}
+
+.checkin-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error-message {
+  background-color: #fee2e2;
+  color: #dc2626;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 0.375rem;
+  text-align: center;
+}
+
+.success-message {
+  background-color: #dcfce7;
+  color: #16a34a;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 0.375rem;
+  text-align: center;
 }
